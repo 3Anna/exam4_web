@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    
+    <title>Создание модели</title>
+</head>
+
+<body>
+    <header>
+        <h1>Вариант N</h1>
+    </header>
+
+    <main>
+        <div>
+            <form class="Form" name="model" method="post" action="/create" enctype="multipart/form-data" id="formid"> <!--multipart/form-data Данные не кодируются. Это значение применяется при отправке файлов-->
+                <div class="form-group">
+                    <label for="name">Название</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите название" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        placeholder="Введите описание" required>
+                </div>
+                <button type="submit" class="btn_add">Save</button>
+                <button type="button" class="btn_view">open</button>
+            </form>
+        </div>
+        <div class="add"></div>
+
+        <script src="/newPost.js"></script>
+    </main>
+    <footer>
+        <h1> Сурова Анна 201-323</h1>
+    </footer>
+    
+</body>
+
+</html>
+<script>
+    let form = document.forms[0]; //записывает форму, 0 - потому что одна она
+
+    form.addEventListener("submit", (e) => { 
+        e.preventDefault(); 
+
+        fetch('/create', { //fetch - отправляет запрос
+            method: "POST",
+            body: new FormData(formid),
+        })
+            .then((r) => r.json()) //then - когла произойдет fetch, создастся переменная с типом json
+            .then((json) => {
+                console.table(json); //если всё ок, в консоль выводит json
+            })
+            .catch((error) => alert(`Ошибка\n${error}`)); //если не ок - ошибку
+    });
+
+    let button = document.querySelector(".btn_view")
+    button.addEventListener('click', function() {
+        const getData = async (url) => {
+        const res = await fetch((url),{
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        })
+        const json = await res.json()
+        return json
+        }
+    
+        getData("http://localhost:3000/api/posts")
+        .then(posts => {        
+        let div = document.querySelector(".add");
+        /*let article = document.querySelector(".art");
+        if (article){ 
+            article.remove();
+        }*/
+
+        while(div.firstChild){
+            div.removeChild(div.firstChild);
+}
+
+        
+        
+        Object.keys(posts).forEach((i) => {
+            let article = document.createElement('article');
+            article.classList.add('art')
+            let div1 = document.createElement('div');
+            let div2 = document.createElement('div');
+        
+            div1.classList.add('form-group');
+            div2.classList.add('form-group');
+
+            let h2 = document.createElement('h2');
+            h2.innerHTML = posts[i].Name;
+
+            let p1 = document.createElement('p')
+            p1.innerHTML = posts[i].Info;
+            
+            
+            div1.appendChild(h2);
+            div2.appendChild(p1);
+            
+            article.appendChild(div1);
+            article.appendChild(div2);
+
+            div.appendChild(article);
+        });
+        })
+        .catch(error => console.log(error.message))
+    })
+
+
+</script>
+<!--
+<script>
+
+    const getData = async (url) => {
+        const res = await fetch((url),{
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        })
+        const json = await res.json()
+        return json
+        }
+    
+        getData("http://localhost:3000/api/newPost")
+        .then(posts => {
+            let div = document.querySelector(".add");
+            let p=document.createElement('p');
+            div.appendChild(p);
+        /*
+        let div = document.querySelector(".add");
+        Object.keys(posts).forEach((i) => {
+            let article = document.createElement('article');
+        
+            let div1 = document.createElement('div');
+            let div2 = document.createElement('div');
+        
+            div1.classList.add('form-group');
+            div2.classList.add('form-group');
+
+            let h2 = document.createElement('h2');
+            h2.innerHTML = posts[i].Name;
+
+            let p1 = document.createElement('p')
+            p1.innerHTML = posts[i].Info;
+            
+            
+            div1.appendChild(h2);
+            div2.appendChild(p1);
+            
+            article.appendChild(div1);
+            article.appendChild(div2);
+
+            div.appendChild(article);
+        });*/
+        })
+        .catch(error => console.log(error.message))
+        
+        
+    </script>
+
+-->

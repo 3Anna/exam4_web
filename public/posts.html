@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    <!--<script type="module" src="/fileFilter.js"></script>-->
+    <title>модели</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="line">
+                <li><a href="/index">Main</a></li>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/newPost">NewPost</a></li>
+                <!--<li><a href="/delayed">Delayed</a></li>-->
+            </ul>
+        </nav>
+    </header>
+    <main class="add">
+        <!--<article >
+            <h1> posts: </h1>
+        <div>
+            <div class="form-group">
+                <h1>Модель Image</h1>
+                <img src="/images/2022-10-20_11-00-56.png">
+            </div>
+            
+        </div>
+        <div>
+            <div class="form-group">
+                <h1><a href="/posts/1">Название модели Title</a></h1>
+            </div>
+            
+            <div class="form-group" >
+                <h1 style="display: inline">Теги: </h1><p style="display: inline"> Тег Tags</p>
+            </div>
+    
+            <div class="form-group">
+                <p>Описание Info</p>
+            </div>
+        </div>
+        </article>
+    -->
+    
+    </main>
+
+    
+</body>
+    
+</html> 
+
+<script>
+
+    const getData = async (url) => {
+        const res = await fetch((url),{
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        })
+        const json = await res.json()
+        return json
+        }
+    
+        getData("http://localhost:3000/api/posts")
+        .then(posts => {
+        
+        let body = document.querySelector(".add");
+        Object.keys(posts).forEach((i) => {
+            let article = document.createElement('article');
+        
+            let div1 = document.createElement('div');
+            let div2 = document.createElement('div');
+            let div3 = document.createElement('div');
+        
+            div3.classList.add('form-group');
+
+            let img = document.createElement('img');
+            img.setAttribute('src', posts[i].Image);
+            img.setAttribute('width', '10%');
+        
+            let div4 = document.createElement('div');
+            let div5 = document.createElement('div');
+            let div6 = document.createElement('div');
+
+            div4.classList.add('form-group');
+            div5.classList.add('form-group');
+            div6.classList.add('form-group');
+
+            let h1 = document.createElement('h1');
+            let a = document.createElement('a');
+            a.setAttribute('href', `/posts/${posts[i].ModelID}`);
+            a.innerHTML = posts[i].Title;
+
+            h1.appendChild(a);
+            let p1 = document.createElement('p')
+            p1.innerHTML = posts[i].Info;
+            let p2 = document.createElement('p')
+            p2.innerHTML = posts[i].Tags;
+            p2.setAttribute('style', "display: inline")
+
+            div1.appendChild(div3);
+            div3.appendChild(img);
+
+            div4.appendChild(h1);
+            div5.appendChild(p1);
+            div6.appendChild(p2);
+
+            div2.appendChild(div4);
+            div2.appendChild(div5);
+            div2.appendChild(div6);
+        
+            article.appendChild(div1);
+            article.appendChild(div2);
+
+            body.appendChild(article);
+        });
+        })
+        .catch(error => console.log(error.message))
+        
+        
+    </script>

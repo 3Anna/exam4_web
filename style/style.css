@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+:root {
+    --primary-color-background:#cfc1db;
+    --primary-color-footer:#fcf8ff;
+    --primary-color-h1: white;
+}
+
+body
+{   
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--primary-color-background);
+}
+
+header {
+    color: var(--primary-color-h1);
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--primary-color-footer);
+    color: var(--primary-color-background);
+    text-align: center;
+}
+
+form {
+    width: 50%;
+    margin:auto;
+    background-color: rgba(92, 61, 61, 0.4);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+    margin-top:60px;
+}
+
+label {
+
+    /*float: left; *//* Выстраиваем элементы рядом */
+    margin-right: 20px; /* Расстояние от текста до текстового поля */
+    line-height: 30px;
+    font-size: 20px;
+} 
+
+.form-group {
+    margin:auto;
+}
+.form-control {
+    font-family: 'Rubik', sans-serif;
+    border: 1px solid #e9dbf3;
+    background-color: var(--primary-color-footer);
+    border-radius: 4px;
+
+}
+.form-control:focus {
+    background-color: #ffffff;
+}
+
+.btn_add {
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--primary-color-background);
+    color:#ffffff;
+    border: 3px solid #ffffff;
+    margin-top: 20px;    
+    font-size: 20px;
+}
+
+.btn_add:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+input:invalid {
+    border-color: #e94e4e;
+    box-shadow: 0 0 5px 1px #e94e4e;
+}
+
+.add{
+    margin: 30px;
+    font-family: 'Rubik', sans-serif;
+    border: 1px solid #e9dbf3;
+    background-color: #b89999;
+    border-radius: 4px;
+
+}
