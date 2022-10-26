@@ -3,10 +3,10 @@ const router = express.Router();
 
 const { 
     getApiPosts, 
-    getApiPost,
+    //getApiPost,
     } = require('../controllers/api-post-controller');
 
 router.get('/api/posts', getApiPosts);
-router.get('/api/posts/:id', getApiPost);
+//router.get('/api/posts/:id', getApiPost);
 
 module.exports = router;

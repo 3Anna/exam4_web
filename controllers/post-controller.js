@@ -4,11 +4,12 @@ const { addModel } = require('../models/AddModel.js');
 const { selectModels } = require('../models/GetModel.js');
 const createPath = require('../middlewares/create-path');
 
+/*
 const getHome = (req, res) => {
     res
     .status(200)
-    .sendFile(createPath('index'));
-}
+    .sendFile(createPath('newPost'));
+}*/
 
 const getPosts = async (req, res) => {
     let posts = await selectModels();
@@ -17,12 +18,12 @@ const getPosts = async (req, res) => {
     .status(200)
     .sendFile(createPath('posts'));
 }
-
+/*
 const getPost = (req, res) => {
     res
     .status(200)
     .sendFile(createPath('post'));
-  }
+  }*/
 
 const addPost = (req, res) => {
     res
@@ -68,9 +69,9 @@ const sendPost = async (req, res) => { //перенос данных в бд
 
 
 module.exports = {
-    getHome,
+    //getHome,
     getPosts,
-    getPost,
+    //getPost,
     addPost,
     sendPost,
 }

@@ -12,7 +12,7 @@ async function selectModels() {
         return false;
     }
 }
-
+/*
 async function selectModel(ID) {
     try {
         let {data, error} = await supabase
@@ -25,6 +25,9 @@ async function selectModel(ID) {
     } catch (e) {
         throw e
     }
-}
+}*/
 
-module.exports = { selectModels , selectModel};
+module.exports = { 
+    selectModels , 
+    //selectModel
+};

@@ -8,19 +8,13 @@ const app = express();
 
 var engines = require('consolidate');
 
-
 app.use(express.static('style'));
-app.use(express.static('images'));
 app.use(express.static('configs'));
 
-app.set('views', __dirname + '/public');
-app.engine('html', engines.mustache);
-app.set('view engine', 'html');
-
-const PORT = 3000;
+const PORT = 5500;
 
 app.listen(PORT, (error) => {
-  error ? console.log(error) : console.log(`listening port ${PORT}, Server started at port http://localhost:3000/`);
+  error ? console.log(error) : console.log(`listening port ${PORT}, Server started at port http://localhost:5500/`);
 });
 
 app.use(postRouters);

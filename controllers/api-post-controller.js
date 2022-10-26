@@ -1,4 +1,6 @@
-const { selectModels, selectModel } = require('../models/GetModel.js');
+const { selectModels, 
+  //selectModel 
+  } = require('../models/GetModel.js');
 
 const getApiPosts = async (req, res) => {
     let posts = await selectModels();
@@ -7,7 +9,7 @@ const getApiPosts = async (req, res) => {
       .status(200)
       .send(JSON.stringify(posts));
 }
-
+/*
 const getApiPost = async (req, res) => {
     console.log(req.params.id);
     let post = await selectModel(req.params.id);
@@ -15,9 +17,9 @@ const getApiPost = async (req, res) => {
     res
       .status(200)
       .send(JSON.stringify(post));
-}
+}*/
 
 module.exports = {
     getApiPosts,
-    getApiPost,
+    //getApiPost,
 }
