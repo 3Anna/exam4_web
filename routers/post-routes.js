@@ -6,13 +6,13 @@ const { upload } = require('../middlewares/fileFilter.js');
 const { 
     //getHome,
     getPosts, 
-    //getPost, 
+    getPost, 
     addPost,
     sendPost, 
     } = require('../controllers/post-controller');
 
 router.get('/', addPost);
-//router.get('/posts/:id', getPost);
+router.get('/posts/:id', getPost);
 router.get('/newPost', addPost);
 router.get('/posts', getPosts);
 router.post("/create", upload, sendPost);

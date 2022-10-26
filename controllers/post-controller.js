@@ -18,12 +18,12 @@ const getPosts = async (req, res) => {
     .status(200)
     .sendFile(createPath('posts'));
 }
-/*
+
 const getPost = (req, res) => {
     res
     .status(200)
     .sendFile(createPath('post'));
-  }*/
+  }
 
 const addPost = (req, res) => {
     res
@@ -71,7 +71,7 @@ const sendPost = async (req, res) => { //перенос данных в бд
 module.exports = {
     //getHome,
     getPosts,
-    //getPost,
+    getPost,
     addPost,
     sendPost,
 }
